@@ -1,4 +1,4 @@
-def factorlist(x):
+def factor_list(x):
     factors = []
     pairs = {}
     print("The factors of",x,"are:")

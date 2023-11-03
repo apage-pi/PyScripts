@@ -56,5 +56,3 @@ def quadratic_function(a,b,c,d="x",e=""):
     else:
         # if the part under the sqrt is negative, you have a solution with i
         return 0 
-
-print(quadratic_function(-8,-15,2,"g","y"))
