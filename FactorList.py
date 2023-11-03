@@ -1,4 +1,4 @@
-def print_factors(x):
+def factorlist(x):
     factors = []
     pairs = {}
     print("The factors of",x,"are:")
@@ -10,12 +10,10 @@ def print_factors(x):
                 pairs[i].append(int(x/i))
                 factors.append(i)
                 factors.append(int(x/i))
-                print(pairs[i])
-                print("")
             else:
                 break
     #rint(factors)
-    factors = []
+    return pairs
     
 #num = input("Number to list factors for: ")
 #print("")
