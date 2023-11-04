@@ -1,21 +1,20 @@
 from math import gcd
-def GCFFactor(terms):
+def gcf_factor(terms):
     coefficients = []
     vars = []
     temp = 0
     temp2 = ""
     gcf = 0
     similar_vars = ""
+    gcv = ""
     finlist = []
     for i in terms:
         coefficients.append(i[0])
         vars.append(i[1])
     gcf = gcd(*coefficients)
-    var_sets = [{*s} for s in vars]
-    result_set = var_sets[0]
-    for var_set in var_sets[1:]:
-        result_set.intersection_update(var_set)
-    gcv = ''.join(sorted(list(result_set)))
+    common = set.intersection(*map(set, vars))
+    for i in common:
+        gcv += i
     for i in terms:
         if gcv in i[1]:
             if len(i) == 3:
@@ -24,12 +23,12 @@ def GCFFactor(terms):
                 i[1].replace(gcv, "")
         i[0] /= gcf
         i[0] = int(i[0])
-    fin = f"{gcf}("
+    fin = "{}(".format(gcf)
     for i in terms:
         if len(i) == 3:
             finlist.append(str(i[0]))
             finlist.append(str(i[1]))
-            finlist.append(f"^(str({i[2]}))")
+            finlist.append("^({})".format(str(i[2])))
             if i != len(i):
                 if "-" not in str(i[0]):
                     finlist.append("+")
@@ -48,4 +47,3 @@ def GCFFactor(terms):
     fin = fin[:-1]
     fin += ")"
     return fin  
-print(GCFFactor([[3, "x"], [366, ""], [-162, ""]]))

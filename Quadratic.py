@@ -43,15 +43,15 @@ def quadratic_function(a,b,c,d="x",e=""):
                 sign2 = "+"
             else:
                 sign2 = ""
-            factored = f"({int(num1)}{d}{sign1}{int(den1)}{e})({int(num2)}{d}{sign2}{int(den2)}{e})"
-            #factored = "({}x{}{})({}x{}{})".format(int(num1),sign1,int(den1),int(num2),sign2,int(den2))
+            #factored = f"({int(num1)}{d}{sign1}{int(den1)}{e})({int(num2)}{d}{sign2}{int(den2)}{e})"
+            factored = "({}x{}{})({}x{}{})".format(int(num1), d, sign1,int(den1),int(num2),e, sign2,int(den2))
             if '-' in factored:
                 factored = factored.replace('-', '')
                 factored = "-" + factored
-            if f'1{d}' in factored:
-                factored = factored.replace(f'1{d}', d)
-            if f'1{e}' in factored:
-                factored = factored.replace(f'1{e}', e)
+            if '1{}'.format(d) in factored:
+                factored = factored.replace('1{}'.format(d), d)
+            if '1{}'.format(e) in factored:
+                factored = factored.replace('1{}'.format(e), e)
             return factored
     else:
         # if the part under the sqrt is negative, you have a solution with i
