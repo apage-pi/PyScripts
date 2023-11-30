@@ -21,7 +21,13 @@ def simplify_fraction(numer, denom):
                 return (reduced_num, reduced_den)
         else:
             return (reduced_num, reduced_den)
-def quadratic_function(a,b,c,d="x",e=""):
+def quadratic_function(a,b,c, d="x", e=""):
+    '''Variable explanation:
+    A - First Coefficent
+    B - Second Coefficent
+    C - Third Coefficient or Constant
+    D - Variable in first term (default - x)
+    E - Variablke in last term (default - none)'''
     if (b**2-4*a*c >= 0):
         x1 = (-b+sqrt(b**2-4*a*c))/(2*a)
         x2 = (-b-sqrt(b**2-4*a*c))/(2*a)
@@ -30,9 +36,9 @@ def quadratic_function(a,b,c,d="x",e=""):
         mult2 = -x2 * a
         (num1,den1) = simplify_fraction(a,mult1)
         (num2,den2) = simplify_fraction(a,mult2)
-        if ((num1 > abs(a)) or (num2 > abs(a))):
+        if ((num1 > a) or (num2 > a)):
             # simplify fraction will make too large of num and denom to try to make a sqrt work
-            return 0
+            return "No factorization"
         else:
             # Getting ready to make the print look nice
             if (den1 > 0):
@@ -43,16 +49,20 @@ def quadratic_function(a,b,c,d="x",e=""):
                 sign2 = "+"
             else:
                 sign2 = ""
-            #factored = f"({int(num1)}{d}{sign1}{int(den1)}{e})({int(num2)}{d}{sign2}{int(den2)}{e})"
-            factored = "({}x{}{})({}x{}{})".format(int(num1), d, sign1,int(den1),int(num2),e, sign2,int(den2))
-            if '-' in factored:
-                factored = factored.replace('-', '')
-                factored = "-" + factored
-            if '1{}'.format(d) in factored:
-                factored = factored.replace('1{}'.format(d), d)
-            if '1{}'.format(e) in factored:
-                factored = factored.replace('1{}'.format(e), e)
+            factored = "({}{}{}{}{})({}{}{}{}{})".format(int(num1), d, sign1,int(den1), e, int(num2), d, sign2,int(den2), e)
+            # remove "1" coefficients and replace them with the variable alone
+            if "1{}".format(d) in factored:
+                factored = factored.replace("1{}".format(d), d)
+            if "1{}".format(e) in factored:
+                factored = factored.replace("1{}".format(e), e)
             return factored
     else:
         # if the part under the sqrt is negative, you have a solution with i
-        return 0 
+        return "Solutions are imaginary"
+    return
+
+# This function takes in a, b, and c from the equation:
+# ax^2 + bx + c
+# and prints out the factorization if there is one
+
+print(quadratic_function(7, 27, -4, "y", "b"))
