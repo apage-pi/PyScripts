@@ -19,14 +19,20 @@ while True:
         y2 = int(input("Enter second y coordinate: "))
         xDist = x1 - x2
         yDist = y1 - y2
-        if yDist % xDist == 0:
-            slope = yDist / xDist
-            print("Slope: {}".format(slope))
-        else:
-            slope = simply_num, simply_denom = simplify_fraction(yDist, xDist)
-            print(''' {}
+        try:
+            if yDist % xDist == 0:
+                slope = yDist / xDist
+                print("Slope: {}".format(slope))
+                print("")
+            else:
+                slope = simply_num, simply_denom = simplify_fraction(yDist, xDist)
+                print(''' {}
 -----
  {}'''.format(simply_num, simply_denom))
+                print("")
+        except ZeroDivisionError:
+            print("No Slope")
+            print("")
     else:
         xDist = int(input("Distance between X coordinate points: "))
         yDist = int(input("Distance between Y coordinate points: "))
