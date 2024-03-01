@@ -2,13 +2,16 @@ from fractions import Fraction
 while True:
     print("1) Slope from coordinates")
     print("2) Slope from distances")
-    type = int(input("Select (1 or 2): "))
+    print("3) Exit")
+    type = int(input("Select (1/2/3): "))
 
     def simplify_fraction(num, denom):
         fraction = Fraction(num, denom)
         return fraction.numerator, fraction.denominator
 
-    if type == 1:
+    if type == 3:
+        break
+    elif type == 1:
         print("Remember: Coordinates are like this: (x, y)")
         x1 = int(input("Enter first x coordinate: "))
         y1 = int(input("Enter first y coordinate: "))
